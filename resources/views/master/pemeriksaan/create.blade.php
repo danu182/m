@@ -22,39 +22,35 @@
                 <div class="table-responsive">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">form Tambah Pemeriksaan</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">form Tambah Pemeriksaan -->{{ $subCategory->nama_subcategory }}</h6>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('pemeriksaan.store') }}" method="POST">
+                            <form action="{{ route('subCategory.pemeriksaan.store', $subCategory->id) }}" method="POST">
                                 @csrf
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="">Pemeriksaan</label>
                                     <select name="sub_kategori_id" id="">
                                         @foreach ($subkategori as $item)
                                             <option value="{{ $item->id }}">{{ $item->nama_sub_kategori }}</option>
                                         @endforeach
                                     </select>
-                                </div>
-                                
+                                </div> --}}
+
                                 <div class="form-group">
                                     <label for="">nama_pemeriksaan</label>
-                                    <input type="text" name="nama_pemeriksaan">
+                                    <input type class="form-control" type="text" name="nama_pemeriksaan">
                                 </div>
                                 
-                                <div class="form-group">
-                                    <label for="">satuan</label>
-                                    <input type="text" name="satuan">
-                                </div>
+                                {{-- <div class="form-group">
+                                    <label for="">subcategory_id</label>
+                                    <input type class="form-control" type="text" name="subcategory_id">
+                                </div> --}}
                                 
                                 <div class="form-group">
-                                    <label for="">nilai_bawah</label>
-                                    <input type="text" name="nilai_bawah">
+                                    <label for="">descripcion</label>
+                                    <textarea class="form-control" name="descripcion" id="" cols="30" rows="10"></textarea>
                                 </div>
                                 
-                                <div class="form-group">
-                                    <label for="">nilai_atas</label>
-                                    <input type="text" name="nilai_atas">
-                                </div>
                                 
                                 <button class="btn btn-primary">simpan</button>
                             </form>

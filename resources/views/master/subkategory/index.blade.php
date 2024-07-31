@@ -64,8 +64,8 @@
                                                 <td>{{ $item->slug }}</td>
                                             <td>
                                         <a href="{{ route('subCategory.edit', $item->id) }}" class="btn btn-warning">Edit</a>
-                                        <a href="{{ route('subCategory.edit', $item->id) }}" class="btn btn-warning">Edit</a>
-                                        {{-- <a href="{{ route('subCategory.edit', $item->id) }}" class="btn btn-info">tambah pemeriksaan</a> --}}
+                                        {{-- <a href="{{ route('subCategory.edit', $item->id) }}" class="bt n btn-warning">Edit</a> --}}
+                                        <a href="{{ route('subCategory.pemeriksaan.index', $item->id) }}" class="btn btn-info">tambah pemeriksaan</a>
                                     </td>
                                     <td>
                                         <form action="{{ route('subCategory.destroy', $item->id) }}" method="post">

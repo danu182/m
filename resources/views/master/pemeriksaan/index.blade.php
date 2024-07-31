@@ -11,43 +11,40 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="pull-left">
-                      pemeriksaan
+                      pemeriksaan {{ $subCategory->nama_subcategory }}
                      {{-- <a href="" class="btn btn-outline-danger">Tambah Kategori</a> --}}
                 </div>
                 <div class="text-right">
-                    <a href="{{route('pemeriksaan.create')}}" class="btn btn-success">Tambah</a>
+                    {{-- <a href="{{route('subCategory.pemeriksaan.create',$subCategory)}}" class="btn btn-success">Tambah</a> --}}
                 </div>
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">pemeriksaan</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">pemeriksaan -> {{ $subCategory->nama_subcategory }}</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                          <th scope="col">id</th>
-                                          <th scope="col">nama pemeriksaan</th>
-                                          {{-- <th scope="col">kategori_id</th> --}}
-                                          <th scope="col">aksi</th>
-                                          <th scope="col">aksi</th>
-                                        
+                                         <th>id</th>
+                                            <th>nama_pemeriksaan</th>
+                                            <th>subcategory_id</th>
+                                            <th>descripcion</th>
+
                                           
                                           
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                          <th scope="col">id</th>
-                                          <th scope="col">nama pemeriksaan</th>
-                                          {{-- <th scope="col">kategori_id</th> --}}
-                                          {{-- <th scope="col">kategori_id</th> --}}
-                                          <th scope="col">aksi</th>
-                                          <th scope="col">aksi</th>
-                                        
+                                          id
+                                            <th>nama_pemeriksaan</th>
+                                            <th>subcategory_id</th>
+                                            <th>descripcion</th>
+
                                           
                                         </tr>
                                     </tfoot>
@@ -59,10 +56,10 @@
                                                 {{-- <td>{{ $item->kategori_id }}</td> --}}
                                                     {{-- <td>{{ $item['Relasi_kategori']['nama_kategori'] }}</td> --}}
                                                   <td>
-                                                    <a href="{{ route('pemeriksaan.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                                                    {{-- <a href="{{ route('subCategory.pemeriksaan.edit', $item->id) }}" class="btn btn-warning">Edit</a> --}}
                                                 </td>
                                                 <td>
-                                                    <form action="{{ route('pemeriksaan.destroy', $item->id) }}" method="post">
+                                                    <form action="{{ route('pemeriksaan.destroy', $item->id)  }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger">hapus</button>

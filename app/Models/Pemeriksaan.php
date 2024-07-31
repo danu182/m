@@ -12,7 +12,7 @@ class Pemeriksaan extends Model
 
 
     protected $fillable = [
-        'nama_pemeriksaans',
+        'nama_pemeriksaan',
         'subcategory_id',
         'descripcion',
         'slug',
@@ -23,6 +23,7 @@ class Pemeriksaan extends Model
     public function getPemeriksaan()
     {
         return $this->belongsTo(SubCategory::class, 'subcategory_id', 'id');
+        // return $this->hasOne(SubCategory::class, 'subcategory_id', 'id');
     }
 
 }
