@@ -15,7 +15,7 @@
                      {{-- <a href="" class="btn btn-outline-danger">Tambah Kategori</a> --}}
                 </div>
                 <div class="text-right">
-                    <a href="{{route('subKategori.create')}}" class="btn btn-success">Tambah</a>
+                    <a href="{{route('SubCategory.create')}}" class="btn btn-success">Tambah</a>
                 </div>
             </div>
             <div class="panel-body">
@@ -30,11 +30,11 @@
                                     <thead>
                                         <tr>
                                           <th scope="col">id</th>
-                                          <th scope="col">nama_subcatego</th>
-                                          <th scope="col">category_id</th>
+                                          <th scope="col">nama_subcategori</th>
+                                          <th scope="col">category</th>
                                           <th scope="col">description</th>
-                                          <th scope="col">slug</th>
                                           <th scope="col">aksi</th>
+                                          <th scope="col">hapus</th>
                                           <th scope="col">aksi</th>
                                         
                                           
@@ -44,28 +44,29 @@
                                     <tfoot>
                                         <tr>
                                           <th scope="col">id</th>
-                                          <th scope="col">nama_subcatego</th>
-                                          <th scope="col">category_id</th>
+                                          <th scope="col">nama_subcategori</th>
+                                          <th scope="col">category</th>
                                           <th scope="col">description</th>
-                                          <th scope="col">slug</th>
                                           <th scope="col">aksi</th>
+                                          <th scope="col">hapus</th>
                                           <th scope="col">aksi</th>
                                         
                                           
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                           @foreach ($subKategori as $item)
+                                           @foreach ($subCategory as $item)
                                             <tr>
                                                 <td>{{ $item->id }}</td>
-                                                <td>{{ $item->nama_sub_kategori }}</td>
-                                                {{-- <td>{{ $item->kategori_id }}</td> --}}
-                                                <td>{{ $item['Relasi_kategori']['nama_kategori'] }}</td>
-                                                  <td>
-                                        <a href="{{ route('subKategori.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                                                <td>{{ $item->nama_subcategory }}</td>
+                                                <td>{{ $item->category->nama_category }}</td>
+                                                <td>{{ $item->slug }}</td>
+                                            <td>
+                                        <a href="{{ route('SubCategory.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                                        <a href="{{ route('SubCategory.edit', $item->id) }}" class="btn btn-success">Edit</a>
                                     </td>
                                     <td>
-                                        <form action="{{ route('subKategori.destroy', $item->id) }}" method="post">
+                                        <form action="{{ route('SubCategory.destroy', $item->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">hapus</button>

@@ -11,8 +11,8 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="pull-left">
-                     form Tambah Kategori
-                     {{-- <a href="" class="btn btn-outline-danger">form Tambah Kategori</a> --}}
+                     form Tambah SubCategory
+                     {{-- <a href="" class="btn btn-outline-danger">form Tambah SubCategory</a> --}}
                 </div>
                 <div class="text-right">
                     {{-- <a href="{{URL::route('employee.add')}}" class="btn btn-success">Tambah</a> --}}
@@ -22,23 +22,32 @@
                 <div class="table-responsive">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">form Tambah sub Kategori</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">form Tambah SubCategory</h6>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('subKategori.store') }}" method="POST">
+                            <form action="{{ route('SubCategory.store') }}" method="POST">
                                 @csrf
+                                
                                 <div class="form-group">
-                                    <label for=""> kategori</label>
-                                    <select name="kategori_id" id="">
-                                        @foreach ($kategori as $item)
-                                            <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
+                                    <label for="">nama_subcategory</label>
+                                    <input class="form-control" type="text" name="nama_subcategory">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">category_id</label>
+                                    <select class="form-control" name="category_id" id="">
+                                        @foreach ($category as $item)
+                                            <option value="{{ $item->id }}">{{ $item->nama_category }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+
                                 <div class="form-group">
-                                    <label for="">nama sub kategori</label>
-                                    <input type="text" name="nama_sub_kategori">
+                                    <label for="exampleFormControlTextarea1">descrition</label>
+                                    <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
                                 </div>
+
+                                
                                 <button class="btn btn-primary">simpan</button>
                             </form>
                         </div>

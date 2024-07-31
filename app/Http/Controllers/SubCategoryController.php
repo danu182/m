@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class SubCategoryController extends Controller
 {
@@ -12,7 +14,8 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        $subCategory =SubCategory::all();
+        $subCategory =SubCategory::with('category')->get();
+        
         return view('master.subkategory.index',compact('subCategory'));
     }
 
@@ -21,7 +24,8 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
-        //
+        $category =Category::all();
+        return view('master.subkategory.create', compact('category'));
     }
 
     /**
@@ -29,7 +33,18 @@ class SubCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'nama_subcategory' => $request->nama_subcategory,
+            'category_id' => $request-> category_id,
+            'description' => $request->description,
+            'slug' => Str::slug($request->nama_subcategory),
+            
+        ];
+
+        // return $data;
+
+            SubCategory::create($data);
+            return redirect()->route('SubCategory.index');
     }
 
     /**
