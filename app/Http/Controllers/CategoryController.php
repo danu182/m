@@ -58,7 +58,7 @@ class CategoryController extends Controller
     {
         // return "edit";
         // return $category->namaCategory;
-        return view('master.category.edit', compact('category'));
+        return view('master.category.edit', compact('category')); 
     }
 
     /**
