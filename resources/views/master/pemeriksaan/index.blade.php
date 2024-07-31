@@ -15,7 +15,7 @@
                      {{-- <a href="" class="btn btn-outline-danger">Tambah Kategori</a> --}}
                 </div>
                 <div class="text-right">
-                    {{-- <a href="{{route('subCategory.pemeriksaan.create',$subCategory)}}" class="btn btn-success">Tambah</a> --}}
+                    <a href="{{route('subCategory.pemeriksaan.create',$subCategory)}}" class="btn btn-success">Tambah</a>
                 </div>
             </div>
             <div class="panel-body">
