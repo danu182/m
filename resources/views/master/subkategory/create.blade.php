@@ -11,8 +11,8 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="pull-left">
-                     form Tambah SubCategory
-                     {{-- <a href="" class="btn btn-outline-danger">form Tambah SubCategory</a> --}}
+                     form Tambah subCategory
+                     {{-- <a href="" class="btn btn-outline-danger">form Tambah subCategory</a> --}}
                 </div>
                 <div class="text-right">
                     {{-- <a href="{{URL::route('employee.add')}}" class="btn btn-success">Tambah</a> --}}
@@ -22,14 +22,14 @@
                 <div class="table-responsive">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">form Tambah SubCategory</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">form Tambah subCategory</h6>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('SubCategory.store') }}" method="POST">
+                            <form action="{{ route('subCategory.store') }}" method="POST">
                                 @csrf
                                 
                                 <div class="form-group">
-                                    <label for="">nama_subcategory</label>
+                                    <label for="">nama_subCategory</label>
                                     <input class="form-control" type="text" name="nama_subcategory">
                                 </div>
 

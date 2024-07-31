@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pemeriksaans', function (Blueprint $table) {
             $table->id();
 
-            $table->string('nama_pemeriksaans');
+            $table->string('nama_pemeriksaan');
             $table->bigInteger('subcategory_id');
             $table->text('descripcion')->nullable();
             $table->text('slug')->nullable();

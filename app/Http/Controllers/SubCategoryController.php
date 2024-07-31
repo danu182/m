@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\SubCategory;
+use GuzzleHttp\RetryMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -44,7 +45,7 @@ class SubCategoryController extends Controller
         // return $data;
 
             SubCategory::create($data);
-            return redirect()->route('SubCategory.index');
+            return redirect()->route('subCategory.index');
     }
 
     /**
@@ -60,7 +61,16 @@ class SubCategoryController extends Controller
      */
     public function edit(SubCategory $subCategory)
     {
-        //
+        // $subCategory =SubCategory::with('category')->where('id',$subCategory->id)->get();
+        // $subCategory =SubCategory::with('category')->where('id',$subCategory->id)->get();
+        $subCategory =SubCategory::with(['category'])->where('id',$subCategory->id)->get();
+        
+        $category =Category::all();
+        
+        // return $subCategory;
+
+    // return $subCategory;
+        return view('master.subkategory.edit', compact('subCategory','category'));
     }
 
     /**
@@ -68,7 +78,21 @@ class SubCategoryController extends Controller
      */
     public function update(Request $request, SubCategory $subCategory)
     {
-        //
+         $data = [
+            'nama_subcategory' => $request->nama_subcategory,
+            'category_id' => $request-> category_id,
+            'description' => $request->description,
+            // 'slug' => Str::slug($request->nama_subcategory),
+            
+        ];
+
+        // return $data;
+
+            
+            $subCategory->update($data);
+            return redirect()->route('subCategory.index');
+
+        
     }
 
     /**
@@ -76,6 +100,7 @@ class SubCategoryController extends Controller
      */
     public function destroy(SubCategory $subCategory)
     {
-        //
+        $subCategory->delete();
+        return redirect()->route('subCategory.index');
     }
 }

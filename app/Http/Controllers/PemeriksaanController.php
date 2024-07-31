@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pemeriksaan;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
 class PemeriksaanController extends Controller
@@ -10,9 +11,10 @@ class PemeriksaanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(SubCategory $subcategory )
     {
-        //
+        $query= Pemeriksaan::with(['getItem'])->where('idPeriksa',$subcategory->id);
+            
     }
 
     /**
