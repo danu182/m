@@ -59,7 +59,11 @@
                                                 <td>{{ $item->nama_paket }}</td>
                                                 <td>{{ $item->description }}</td>
                                                 <td>{{ $item->slug }}</td>
-                                                  <td>
+                                         
+                                                <td>
+                                        <a href="{{ route('paket.paketdetail.index', $item->id) }}" class="btn btn-info  ">rinci</a>
+                                    </td>
+                                                <td>
                                         <a href="{{ route('paket.edit', $item->id) }}" class="btn btn-warning">Edit</a>
                                     </td>
                                     <td>

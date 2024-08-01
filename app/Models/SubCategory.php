@@ -39,4 +39,18 @@ class SubCategory extends Model
     }
 
 
+    public function getAll()
+    {
+        return $this->hasMany(Pemeriksaan::class, 'subcategory_id', 'id');
+    }
+
+    public function getPemeriksaan()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+        
+    }
+
+
+    
+
 }

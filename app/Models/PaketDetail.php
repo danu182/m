@@ -12,18 +12,18 @@ class PaketDetail extends Model
 
     protected $fillable = [
         'paket_id',
-        'pemeriksaan_id'
+        'pemeriksaan_id',
 
     ];
 
 
     
-    public function pemeriksaan()
+    public function getPemeriksaan()
     {
         return $this->belongsTo(Pemeriksaan::class, 'pemeriksaan_id', 'id');
     }
     
-    public function paket()
+    public function getPaket()
     {
         return $this->belongsTo(Paket::class, 'paket_id', 'id');
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Pemeriksaan;
 use App\Models\SubCategory;
 use GuzzleHttp\RetryMiddleware;
 use Illuminate\Http\Request;
@@ -16,6 +17,13 @@ class SubCategoryController extends Controller
     public function index()
     {
         $subCategory =SubCategory::with('category')->get();
+
+
+        // $coba= Pemeriksaan::with('getPemeriksaan')->get();
+        // $coba= Category::with('getSubcategori','SubCAtegory.getAll')->get();
+        // $coba= SubCategory::with(['getCategory','getPemeriksaan'])->get();
+        // $coba= Category::with(['getALL'])->get();
+        // return $coba;
         
         return view('master.subkategory.index',compact('subCategory'));
     }
