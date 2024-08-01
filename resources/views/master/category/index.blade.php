@@ -87,12 +87,16 @@
 <!-- /. ROW  -->
 @endsection
 @section('scripts')
+
+
  <!-- DATA TABLE SCRIPTS -->
-<script src="assets/js/dataTables/jquery.dataTables.js"></script>
-<script src="assets/js/dataTables/dataTables.bootstrap.js"></script>>
+<script src="{{ asset('assets/js/dataTables/jquery.dataTables.js')}}"></script>
+<script src="{{ asset('ass')}}"></script>
+<script src="{{ asset('assets/js/dataTables/dataTables.bootstrap.js')}}"></script>>
 <script>
     $(document).ready(function () {
         $('#dataTables-example').dataTable();
     });
 </script>
+
 @endsection
