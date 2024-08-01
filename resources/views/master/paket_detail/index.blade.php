@@ -63,7 +63,7 @@
                                                     {{-- <a href="{{ route('paket.pemeriksaan.edit',[$item->paket_id, $item->id ]) }}" class="btn btn-warning">Edit</a> --}}
                                                 </td>
                                                 <td>
-                                                    <form action="{{ route('paket.pemeriksaan.destroy', [$item->paket_id, $item->id])  }}" method="post">
+                                                    <form action="{{ route('paket.paketdetail.destroy', [$item->paket_id, $item->id])  }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger">hapus</button>

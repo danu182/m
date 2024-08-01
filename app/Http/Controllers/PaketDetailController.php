@@ -45,9 +45,22 @@ class PaketDetailController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Paket $paket)
     {
-        //
+
+        $data=$request->all();
+
+        // return $paket;
+
+        foreach ($data['paket_id'] as  $datas)
+        {
+            Paketdetail::create([
+            'paket_id'=>$paket->id,
+            'pemeriksaan_id'=>$datas[0],
+            ]);
+        }
+
+        return redirect()->route('paket.paketdetail.index',$paket);
     }
 
     /**
@@ -71,14 +84,16 @@ class PaketDetailController extends Controller
      */
     public function update(Request $request, PaketDetail $paketDetail)
     {
-        //
+        return $request->all();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PaketDetail $paketDetail)
+    public function destroy(Paket $paket,PaketDetail $paketDetail)
     {
-        //
+        // return $paketDetail->id;
+        $paketDetail->delete();
+        return redirect()->route('paket.paketdetail.index',[$paket->id]);   
     }
 }

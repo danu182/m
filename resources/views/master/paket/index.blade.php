@@ -35,6 +35,7 @@
                                           <th scope="col">slug</th>
                                           <th scope="col">aksi</th>
                                           <th scope="col">aksi</th>
+                                          <th scope="col">haspus</th>
                                         
                                           
                                           
@@ -48,7 +49,7 @@
                                           <th scope="col">slug</th>
                                           <th scope="col">aksi</th>
                                           <th scope="col">aksi</th>
-                                        
+                                        <th scope="col">haspus</th
                                           
                                         </tr>
                                     </tfoot>

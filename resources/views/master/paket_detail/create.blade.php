@@ -24,7 +24,7 @@
                             {{-- <h6><strong>{{ $item->name }}</strong></h6> --}}
                             @forelse ($item['getPemeriksaan'] as $items)
                             <ul>
-                                <input type="checkbox" name="barang_id[]" id="" value="{{ $items->id }}"> {{ $items->nama_pemeriksaan }}
+                                <input type="checkbox" name="paket_id[]" id="" value="{{ $items->id }}"> {{ $items->nama_pemeriksaan }}
                             </ul>
                                 
                             @empty

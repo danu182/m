@@ -30,7 +30,9 @@ Route::resource('subCategory',SubCategoryController::class);
 Route::resource('pemeriksaan',PemeriksaanController::class);
 Route::resource('subCategory.pemeriksaan',PemeriksaanController::class);
 
-Route::resource('paket',PaketController::class);
+
+Route::resource('paketdetail',PaketDetailController::class);
+
 Route::resource('paket.paketdetail',PaketDetailController::class);
 
 
