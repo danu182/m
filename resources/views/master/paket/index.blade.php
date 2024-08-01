@@ -30,19 +30,26 @@
                                     <thead>
                                         <tr>
                                           <th scope="col">id</th>
-                                          <th scope="col">nama paket pemeriksaan</th>
+                                          <th scope="col">nama paket</th>
+                                          <th scope="col">description</th>
+                                          <th scope="col">slug</th>
                                           <th scope="col">aksi</th>
                                           <th scope="col">aksi</th>
-                                          <th scope="col">aksi</th>
+                                        
+                                          
+                                          
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                           <th scope="col">id</th>
-                                          <th scope="col">nama paket pemeriksaan</th>
+                                          <th scope="col">nama paket</th>
+                                          <th scope="col">description</th>
+                                          <th scope="col">slug</th>
                                           <th scope="col">aksi</th>
                                           <th scope="col">aksi</th>
-                                          <th scope="col">aksi</th>
+                                        
+                                          
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -50,11 +57,10 @@
                                             <tr>
                                                 <td>{{ $item->id }}</td>
                                                 <td>{{ $item->nama_paket }}</td>
-                                    <td>
+                                                <td>{{ $item->description }}</td>
+                                                <td>{{ $item->slug }}</td>
+                                                  <td>
                                         <a href="{{ route('paket.edit', $item->id) }}" class="btn btn-warning">Edit</a>
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('paket.paketIsi.index', $item->id) }}" class="btn btn-info">isi paket</a>
                                     </td>
                                     <td>
                                         <form action="{{ route('paket.destroy', $item->id) }}" method="post">
@@ -81,12 +87,16 @@
 <!-- /. ROW  -->
 @endsection
 @section('scripts')
+
+
  <!-- DATA TABLE SCRIPTS -->
-<script src="assets/js/dataTables/jquery.dataTables.js"></script>
-<script src="assets/js/dataTables/dataTables.bootstrap.js"></script>>
+<script src="{{ asset('assets/js/dataTables/jquery.dataTables.js')}}"></script>
+<script src="{{ asset('ass')}}"></script>
+<script src="{{ asset('assets/js/dataTables/dataTables.bootstrap.js')}}"></script>>
 <script>
     $(document).ready(function () {
         $('#dataTables-example').dataTable();
     });
 </script>
+
 @endsection

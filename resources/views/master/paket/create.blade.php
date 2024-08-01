@@ -30,8 +30,14 @@
                                 
                                 <div class="form-group">
                                     <label for="">nama paket</label>
-                                    <input type="text" name="nama_paket">
+                                    <input type="text" class="form-control" name="nama_paket">
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">descrition</label>
+                                    <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div>
+
 
                                 
                                 <button class="btn btn-primary">simpan</button>

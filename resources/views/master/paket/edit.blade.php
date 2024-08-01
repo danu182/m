@@ -11,27 +11,33 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="pull-left">
-                     form edit paket
-                     {{-- <a href="" class="btn btn-outline-danger">form edit paket</a> --}}
+                     form EDIT paket
+                     {{-- <a href="" class="btn btn-outline-danger">form EDIT paket</a> --}}
                 </div>
                 <div class="text-right">
-                    {{-- <a href="{{URL::route('employee.add')}}" class="btn btn-success">edit</a> --}}
+                    {{-- <a href="{{URL::route('employee.add')}}" class="btn btn-success">EDIT</a> --}}
                 </div>
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">form edit paket</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">form EDIT paket</h6>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('paket.update', $paket->id) }}" method="POST">
                                 @csrf
-                              @method('put')  
+                                @method('PUT')
                                 <div class="form-group">
                                     <label for="">nama paket</label>
-                                    <input type="text" name="nama_paket" value="{{ $paket->nama_paket }}">
+                                    <input type="text" class="form-control" name="nama_paket" value="{{ $paket->nama_paket }}">
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">descrition</label>
+                                    <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{ $paket->description }}</textarea>
+                                </div>
+
 
                                 
                                 <button class="btn btn-primary">simpan</button>
