@@ -17,7 +17,7 @@ class Category extends Model
         'slug'
     ];
 
-    public function getSubcategori()
+    public function getSubcategoriMaster()
     {
         return $this->hasMany(SubCategory::class, 'category_id', 'id');
     }
@@ -40,12 +40,12 @@ class Category extends Model
     public function getAll() 
     {
          return $this->hasManyThrough(
-            SubCategory::class,
-            Pemeriksaan::class,
-            'subcategory_id', // Foreign key on the deployments table...
-            'category_id', // Foreign key on the environments table...
-            'id', // Local key on the projects table...
-            'id' // Local key on the environments table...
+             Pemeriksaan::class,
+             SubCategory::class,
+             'category_id', // Foreign key on the environments table...
+             'subcategory_id', // Local key on the environments table...
+             'id', // Foreign key on the deployments table...
+             'id', // Local key on the projects table...
         );
         
     }

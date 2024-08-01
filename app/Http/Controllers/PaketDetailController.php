@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Paket;
 use App\Models\PaketDetail;
 use App\Models\Pemeriksaan;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
 class PaketDetailController extends Controller
@@ -24,17 +26,17 @@ class PaketDetailController extends Controller
     public function create(Paket $paket)
     {
 
-        $periksa=Pemeriksaan::with('getSubcategory')->get();
+        $pemeriksaan=SubCategory::with(['getPemeriksaan'])->get();
 
-        return $periksa;
-        $pemeriksaan=Pemeriksaan::whereNotExists(function ($query) use($paket) {
-            $query->select("*")
-              ->from('paket_details')
-              ->whereRaw('paket_details.pemeriksaan_id = pemeriksaan_id'  )
-              ->where('paket_details.paket_id','=',$paket->id);
-                } )->get();
+        // return $periksa;
+        // $pemeriksaan=Pemeriksaan::whereNotExists(function ($query) use($paket) {
+        //     $query->select("*")
+        //       ->from('paket_details')
+        //       ->whereRaw('paket_details.pemeriksaan_id = pemeriksaan_id'  )
+        //       ->where('paket_details.paket_id','=',$paket->id);
+        //         } )->get();
 
-                return $pemeriksaan;
+                // return $pemeriksaan;
 
 
                 return view('master.paket_detail.create', compact('pemeriksaan','paket'));

@@ -34,7 +34,7 @@ class SubCategory extends Model
     
     public function getCategory()
     {
-        return $this->belongsTo(Category::class, 'category_id', 'id');
+        return $this->hasOne(Category::class, 'id', 'category_id');
         
     }
 
@@ -46,7 +46,7 @@ class SubCategory extends Model
 
     public function getPemeriksaan()
     {
-        return $this->belongsTo(Category::class, 'category_id', 'id');
+        return $this->hasMany(Pemeriksaan::class, 'subcategory_id', 'id');
         
     }
 

@@ -26,9 +26,9 @@ class Pemeriksaan extends Model
         // return $this->hasOne(SubCategory::class, 'subcategory_id', 'id');
     }
 
-    public function getSubcategory()
+    public function getSubcategoryPemeriksaan()
     {
-        return $this->belongsTo(SubCategory::class, 'subcategory_id', 'id');
+        return $this->hasOne(SubCategory::class, 'id', 'subcategory_id');
         // return $this->hasOne(SubCategory::class, 'subcategory_id', 'id');
     }
 
