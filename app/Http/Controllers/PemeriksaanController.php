@@ -14,8 +14,8 @@ class PemeriksaanController extends Controller
      */
     public function index(SubCategory $subCategory )
     {
-        $pemeriksaan= Pemeriksaan::with(['getPemeriksaan'])->where('subcategory_id',$subCategory->id)->get();
-        // $query= Pemeriksaan::with(['getItem'])->get();
+            $pemeriksaan= Pemeriksaan::with(['getPemeriksaan'])->where('subcategory_id',$subCategory->id)->get();
+            // $query= Pemeriksaan::with(['getItem'])->get();
 
         // return $pemeriksaan;
         // return $subCategory;
@@ -52,33 +52,42 @@ class PemeriksaanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pemeriksaan $pemeriksaan)
-    {
-        //
-    }
+    // public function show(Pemeriksaan $pemeriksaan)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pemeriksaan $pemeriksaan)
+    public function edit( SubCategory $subCategory, Pemeriksaan $pemeriksaan )
     {
-        //
+        return view('master.pemeriksaan.edit', compact('pemeriksaan','subCategory'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pemeriksaan $pemeriksaan)
+    public function update(SubCategory $subCategory, Request $request, Pemeriksaan $pemeriksaan)
     {
-        //
+         $data = [
+            'nama_pemeriksaan' => $request->nama_pemeriksaan,
+            'descripcion' => $request->descripcion,
+            'slug' => Str::slug($request->nama_category),
+            
+        ];
+
+        $pemeriksaan->update($data);
+        return redirect()->route('subCategory.pemeriksaan.index', $subCategory);
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pemeriksaan $pemeriksaan, SubCategory $subCategory)
+    public function destroy(SubCategory $subCategory, Pemeriksaan $pemeriksaan )
     {
         $pemeriksaan->delete();
-        // return redirect()->route('subCategory.pemeriksaan.index',[$subCategory->id]);
+        return redirect()->route('subCategory.pemeriksaan.index',[$subCategory->id]);
     }
 }

@@ -11,53 +11,47 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="pull-left">
-                     form edit pemeriksaan
-                     {{-- <a href="" class="btn btn-outline-danger">form Tambah pemeriksaan</a> --}}
+                     form edit pemeeriksaan
+                     {{-- <a href="" class="btn btn-outline-danger">form edit pemeeriksaan</a> --}}
                 </div>
                 <div class="text-right">
-                    {{-- <a href="{{URL::route('employee.add')}}" class="btn btn-success">Tambah</a> --}}
+                    {{-- <a href="{{URL::route('employee.add')}}" class="btn btn-success">edit</a> --}}
                 </div>
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">form edit pemeriksaan</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">form edit Pemeriksaan -->{{ $subCategory->nama_subcategory }} --> {{ $pemeriksaan->nama_pemeriksaan }}</h6>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('pemeriksaan.update',$pemeriksaan->id) }}" method="POST">
+                            <form action="{{ route('subCategory.pemeriksaan.update', [$pemeriksaan->subcategory_id, $pemeriksaan->id]) }}" method="POST">
                                 @csrf
-                                @method('put')
-                                <h1>asdas</h1>
-                                <div class="form-group">
-                                    <label for="">sub kategori pemeriksaan</label>
-                                    <select name="sub_kategori" id="">
-                                        {{-- <option value="{{ $pemeriksaan->id }}">{{ $pemeriksaan['relasi_sub_kategori']->nama_sub_kategori }}</option> --}}
-                                        @foreach ($subkategori as $item)
+                                @method("PUT")
+                                {{-- <div class="form-group">
+                                    <label for="">Pemeriksaan</label>
+                                    <select name="sub_pemeeriksaan_id" id="">
+                                        @foreach ($subpemeeriksaan as $item)
                                             <option value="{{ $item->id }}">{{ $item->nama_sub_kategori }}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div> --}}
 
                                 <div class="form-group">
-                                    <label for="">nama sub pemeriksaan</label>
-                                    <input type="text" name="nama_pemeriksaan" value="{{ $pemeriksaan->nama_pemeriksaan }}">
-                                </div>
-
-                               <div class="form-group">
-                                    <label for="">satuan</label>
-                                    <input type="text" name="satuan" value="{{ $pemeriksaan->satuan }}">
+                                    <label for="">nama_pemeriksaan</label>
+                                    <input type class="form-control" type="text" name="nama_pemeriksaan" value="{{ $pemeriksaan->nama_pemeriksaan }}">
                                 </div>
                                 
-                                <div class="form-group">
-                                    <label for="">nilai_bawah</label>
-                                    <input type="text" name="nilai_bawah" value="{{ $pemeriksaan->nilai_bawah }}">
-                                </div>
+                                {{-- <div class="form-group">
+                                    <label for="">subcategory_id</label>
+                                    <input type class="form-control" type="text" name="subcategory_id">
+                                </div> --}}
                                 
                                 <div class="form-group">
-                                    <label for="">nilai_atas</label>
-                                    <input type="text" name="nilai_atas" value=" {{ $pemeriksaan->nilai_atas  }}">
+                                    <label for="">descripcion</label>
+                                    <textarea class="form-control" name="descripcion" id="" cols="30" rows="10">{{ $pemeriksaan->descripcion }}</textarea>
                                 </div>
+                                
                                 
                                 <button class="btn btn-primary">simpan</button>
                             </form>

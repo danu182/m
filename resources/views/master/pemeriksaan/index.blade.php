@@ -31,8 +31,9 @@
                                         <tr>
                                          <th>id</th>
                                             <th>nama_pemeriksaan</th>
-                                            <th>subcategory_id</th>
-                                            <th>descripcion</th>
+                                            <th>description</th>
+                                            <th>edit</th>
+                                            <th>hapus</th>
 
                                           
                                           
@@ -40,10 +41,11 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                          id
+                                          <th>id</th>
                                             <th>nama_pemeriksaan</th>
-                                            <th>subcategory_id</th>
-                                            <th>descripcion</th>
+                                            <th>description</th>
+                                            <th>edit</th>
+                                            <th>hapus</th>
 
                                           
                                         </tr>
@@ -53,13 +55,15 @@
                                             <tr>
                                                 <td>{{ $item->id }}</td>
                                                 <td>{{ $item->nama_pemeriksaan }}</td> 
+                                                <td>{{ $item->descripcion }}</td> 
                                                 {{-- <td>{{ $item->kategori_id }}</td> --}}
                                                     {{-- <td>{{ $item['Relasi_kategori']['nama_kategori'] }}</td> --}}
                                                   <td>
-                                                    {{-- <a href="{{ route('subCategory.pemeriksaan.edit', $item->id) }}" class="btn btn-warning">Edit</a> --}}
+                                                    {{-- <a href="{{ route('subCategory.pemeriksaan.edit',[$item->subcategory_id, $subCategory->id ]) }}" class="btn btn-warning">Edit</a> --}}
+                                                    <a href="{{ route('subCategory.pemeriksaan.edit',[$item->subcategory_id, $item->id ]) }}" class="btn btn-warning">Edit</a>
                                                 </td>
                                                 <td>
-                                                    <form action="{{ route('pemeriksaan.destroy', $item->id)  }}" method="post">
+                                                    <form action="{{ route('subCategory.pemeriksaan.destroy', [$item->subcategory_id, $item->id])  }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger">hapus</button>
