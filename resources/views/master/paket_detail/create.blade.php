@@ -3,9 +3,10 @@
 @section('content')
 
 
-<div class="container">
-<form action="{{ route('paket.paketdetail.store',$paket->id) }}" method="POST">
+{{-- <div class="container"> --}}
+<form action="{{ route('paket.paketdetail.store',[$paket]) }}" method="POST">
     @csrf
+    {{-- @method('post') --}}
     
     <div class="col col-lg">
     
@@ -22,14 +23,12 @@
                 <div class="collapse show" id="{{ $item->id }}">
                     <div class="card-body">
                             {{-- <h6><strong>{{ $item->name }}</strong></h6> --}}
-                            @forelse ($item['getPemeriksaan'] as $items)
-                            <ul>
-                                <input type="checkbox" name="paket_id[]" id="" value="{{ $items->id }}"> {{ $items->nama_pemeriksaan }}
-                            </ul>
+                            @foreach ($item['getPemeriksaan'] as $items)
+                                <ul>
+                                    <input type="checkbox" name="paket_id[]" value="{{ $items->id }}">{{ $items->nama_pemeriksaan }} 
+                                </ul>
                                 
-                            @empty
-                                <h3>tidak ada </h3>                        
-                            @endforelse
+                            @endforeach
                         
                     </div>
                 </div>
@@ -45,7 +44,7 @@
 {{-- </div> --}}
 <button class=" btn btn-primary">simpan</button>
 </form>
-</div>      
+{{-- </div>       --}}
 
 </div>
 

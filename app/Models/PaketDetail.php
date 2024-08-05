@@ -17,7 +17,7 @@ class PaketDetail extends Model
     ];
 
 
-    
+
     public function getPemeriksaan()
     {
         return $this->belongsTo(Pemeriksaan::class, 'pemeriksaan_id', 'id');

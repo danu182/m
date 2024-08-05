@@ -7,7 +7,9 @@ use App\Models\Paket;
 use App\Models\PaketDetail;
 use App\Models\Pemeriksaan;
 use App\Models\SubCategory;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PaketDetailController extends Controller
 {
@@ -23,23 +25,37 @@ class PaketDetailController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Paket $paket)
+    public function create(Paket $paket, PaketDetail $paketDetail)
     {
 
-        $pemeriksaan=SubCategory::with(['getPemeriksaan'])->get();
+        // SELECT * FROM sub_categories s
+        // JOIN pemeriksaans p
+        // on p.subcategory_id = s.id
+        // WHERE NOT EXISTS(
+        //     SELECT * FROM paket_details AS pd WHERE p.id= pd.pemeriksaan_id AND pd.paket_id=3
+        // ) ORDER BY s.category_id;
 
-        // return $periksa;
-        // $pemeriksaan=Pemeriksaan::whereNotExists(function ($query) use($paket) {
-        //     $query->select("*")
-        //       ->from('paket_details')
-        //       ->whereRaw('paket_details.pemeriksaan_id = pemeriksaan_id'  )
-        //       ->where('paket_details.paket_id','=',$paket->id);
-        //         } )->get();
+        // $leagues = DB::table('leagues')
+        //     ->select('league_name')
+        //     ->join('countries', 'countries.country_id', '=', 'leagues.country_id')
+        //     ->where('countries.country_name', $country)
+        //     ->get();
 
-                // return $pemeriksaan;
+        $coba = DB::table('sub_categories')
+                ->select('*')
+                ->join('pemeriksaans', 'pemeriksaans.subcategory_id', '=', 'sub_categories.id')
+                ->whereNotExists(function ($query) use($paket)
+                {
+                    $query->select('*')
+                    ->from('paket_details')
+                    ->where('paket_details.paket_id', '=', $paket->id)
+                    ->whereRaw('paket_details.pemeriksaan_id= pemeriksaans.id');
+                })
+                ->get();
+        return $coba;
 
 
-                return view('master.paket_detail.create', compact('pemeriksaan','paket'));
+        return view('master.paket_detail.create', compact('pemeriksaan','paket'));
     }
 
     /**
@@ -47,16 +63,15 @@ class PaketDetailController extends Controller
      */
     public function store(Request $request, Paket $paket)
     {
-
         $data=$request->all();
-
-        // return $paket;
+        // return $data;
 
         foreach ($data['paket_id'] as  $datas)
         {
-            Paketdetail::create([
+            // echo $datas[0];
+            PaketDetail::create([
             'paket_id'=>$paket->id,
-            'pemeriksaan_id'=>$datas[0],
+            'pemeriksaan_id'=>$datas,
             ]);
         }
 
@@ -90,10 +105,11 @@ class PaketDetailController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Paket $paket,PaketDetail $paketDetail)
+    public function destroy( Paket $paket ,PaketDetail $paketDetail, $id)
     {
-        // return $paketDetail->id;
-        $paketDetail->delete();
+        $detail=PaketDetail::find($id);
+        $detail->delete();
+        // $paketdetail->delete();
         return redirect()->route('paket.paketdetail.index',[$paket->id]);   
     }
 }
