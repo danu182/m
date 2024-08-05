@@ -46,5 +46,10 @@ class Pemeriksaan extends Model
         
     }
 
+    public function getNilai()
+    {
+        return $this->hasMany(Nilai::class, 'pemeriksaan_id', 'id');
+    }
+
 
 }

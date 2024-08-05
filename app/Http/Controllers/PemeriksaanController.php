@@ -14,10 +14,9 @@ class PemeriksaanController extends Controller
      */
     public function index(SubCategory $subCategory )
     {
-            $pemeriksaan= Pemeriksaan::with(['getPemeriksaan'])->where('subcategory_id',$subCategory->id)->get();
+            $pemeriksaan= Pemeriksaan::with(['getPemeriksaan','getNilai'])->where('subcategory_id',$subCategory->id)->get();
             // $query= Pemeriksaan::with(['getItem'])->get();
 
-        // return $pemeriksaan;
         // return $subCategory;
         return view('master.pemeriksaan.index', compact('pemeriksaan','subCategory'));
             

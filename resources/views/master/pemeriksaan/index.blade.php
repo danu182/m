@@ -61,6 +61,7 @@
                                                   <td>
                                                     {{-- <a href="{{ route('subCategory.pemeriksaan.edit',[$item->subcategory_id, $subCategory->id ]) }}" class="btn btn-warning">Edit</a> --}}
                                                     <a href="{{ route('subCategory.pemeriksaan.edit',[$item->subcategory_id, $item->id ]) }}" class="btn btn-warning">Edit</a>
+                                                    <a href="{{ route('subCategory.pemeriksaan.nilai.index',[$item->subcategory_id, $item->id, $item->pemeriksaan_id]) }}" class="btn btn-success">tamah nilai</a>
                                                 </td>
                                                 <td>
                                                     <form action="{{ route('subCategory.pemeriksaan.destroy', [$item->subcategory_id, $item->id])  }}" method="post">
