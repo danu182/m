@@ -41,18 +41,21 @@ class PaketDetailController extends Controller
         //     ->where('countries.country_name', $country)
         //     ->get();
 
-        $coba = DB::table('sub_categories')
-                ->select('*')
+        $pemeriksaan = DB::table('sub_categories')
+                ->select('pemeriksaans.id','pemeriksaans.nama_pemeriksaan','sub_categories.nama_subcategory','categories.nama_category')
                 ->join('pemeriksaans', 'pemeriksaans.subcategory_id', '=', 'sub_categories.id')
+                ->join('categories', 'categories.id','=', 'sub_categories.category_id')
                 ->whereNotExists(function ($query) use($paket)
                 {
                     $query->select('*')
                     ->from('paket_details')
                     ->where('paket_details.paket_id', '=', $paket->id)
+                    ->where('paket_details.deleted_at', null)
+                    // ->where('paket_details.deleted_at,' )
                     ->whereRaw('paket_details.pemeriksaan_id= pemeriksaans.id');
                 })
                 ->get();
-        return $coba;
+        // return $pemeriksaan;
 
 
         return view('master.paket_detail.create', compact('pemeriksaan','paket'));
