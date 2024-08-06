@@ -23,6 +23,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             {{-- <h6 class="m-0 font-weight-bold text-primary">nilai dari pmereiksaan {{ $nilai->nama_pemeriksaan }}</h6> --}}
+                            <a href="{{ route('tambah_nilai',$id) }}" class="btn btn-info">tambah</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -30,31 +31,54 @@
                                     <thead>
                                         <tr>
                                         <th scope="col">id</th>
-                                        <th scope="col">pemeriksaan</th>
-                                        <th scope="col">sub category</th>
+                                        <th scope="col">nama_pemeriksaan</th>
+                                        <th scope="col">jenis_kelamina</th>
+                                        <th scope="col">nilai bawah</th>
+                                        <th scope="col">nilai atas</th>
                                         <th scope="col">satuan</th>
+                                        <th scope="col">created_at</th>
+                                        <th scope="col">created_at</th>
+                                        <th scope="col">aksi</th>
+                                        <th scope="col">hapsu</th>
   
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                         <th scope="col">id</th>
-                                        <th scope="col">pemeriksaan</th>
-                                        <th scope="col">sub category</th>
+                                        <th scope="col">nama_pemeriksaan</th>
+                                        <th scope="col">jenis_kelamina</th>
+                                        <th scope="col">nilai bawah</th>
+                                        <th scope="col">nilai atas</th>
                                         <th scope="col">satuan</th>
-
+                                        <th scope="col">created_at</th>
+                                        <th scope="col">created_at</th>
+                                        <th scope="col">aksi</th>
+                                        <th scope="col">hapsu</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                            @forelse ($pemeriksaan as $item)
                                             <tr>
                                                 {{-- <td>dasd</td> --}}
-                                                <td>{{ $item->id }}</td>
+                                                <td>{{ $item->nilai_id }}</td>
                                                 <td>{{ $item->nama_pemeriksaan }}</td>
-                                                <td>{{ $item->getSubcategoryPemeriksaan->nama_subcategory }}</td>
-                                                <td>
-                                                    <a href="{{ route('list_nilai', $item->id) }}" class="btn btn-warning">Tmabh nilai</a>
+                                                <td>{{ $item->jenis_kelamina }}</td>
+                                                <td>{{ $item->nilai_bawah }}</td>
+                                                <td>{{ $item->nilai_atas }}</td>
+                                                <td>{{ $item->satuan }}</td>
+                                                <td>{{ $item->created_at }}</td>
+                                                <td>{{ $item->updated_at }}</td>
+                                                {{-- <td>{{ $item-> }}</td> --}}
+                                                <td>    
+                                                    <a href="{{ route('tambah_nilai', $item->id) }}" class="btn btn-warning">Tmabh nilai</a>
                                                 </td>
+                                                <td>    
+                                                    <form action="{{ route('hapus_nilai', $item->nilai_id) }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">hapus</button>
+                                                    </form>                                                </td>
                                                                                                        
                                                 </tr>
                                                

@@ -11,8 +11,8 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="pull-left">
-                     form Tambah category
-                     {{-- <a href="" class="btn btn-outline-danger">form Tambah category</a> --}}
+                     form Tambah pemeriksaan
+                     {{-- <a href="" class="btn btn-outline-danger">form Tambah pemeriksaan</a> --}}
                 </div>
                 <div class="text-right">
                     {{-- <a href="{{URL::route('employee.add')}}" class="btn btn-success">Tambah</a> --}}
@@ -22,23 +22,47 @@
                 <div class="table-responsive">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">form Tambah category</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">form Tambah pemeriksaan</h6>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('category.store') }}" method="POST">
+                            <form action="{{ route('simpan_nilai') }}" method="POST">
                                 @csrf
                                 
                                 <div class="form-group">
-                                    <label for="">nama category</label>
-                                    <input class="form-control" type="text" name="nama_category">
+                                    <label for="">id pemeriksaan</label>
+                                    <input class="form-control" type="text" value="{{ $pemeriksaan[0]->id }}" name="pemeriksaan_id">
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">descrition</label>
-                                    <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                </div>
-
                                 
+                                <div class="form-group">
+                                    <label for="">nama pemeriksaan</label>
+                                    <input class="form-control" type="text" value="{{ $pemeriksaan[0]->nama_pemeriksaan }}" name="nama_pemeriksaan">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="">jenis Kelamin</label>
+                                    <select class="form-control" name="sex" id="exampleFormControlSelect1">
+                                        @foreach ($sex as $item)
+                                            <option value="{{ $item->id }}">{{ $item->jenis_kelamina }}</option>
+                                        @endforeach
+                                        
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="">nilai bawah</label>
+                                    <input class="form-control" type="text" name="nilai_bawah">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="">nilai atas</label>
+                                    <input class="form-control" type="text" name="nilai_atas">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="">satuan</label>
+                                    <input class="form-control" type="text" name="satuan">
+                                </div>
+
                                 <button class="btn btn-primary">simpan</button>
                             </form>
                         </div>

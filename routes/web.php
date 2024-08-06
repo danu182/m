@@ -25,6 +25,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('nilai/{id}', [NilaiController::class, 'tambah_nilai'])->name('tambah_nilai');
+Route::get('nilai/list_nilai/{id}', [NilaiController::class, 'list_nilai'])->name('list_nilai');
+Route::post('nilai/simpan_nilai', [NilaiController::class, 'simpan_nilai'])->name('simpan_nilai');
+Route::delete('nilai/hapus_nilai/{id}', [NilaiController::class, 'hapus_nilai'])->name('hapus_nilai');
 
 
 Route::resource('category',CategoryController::class);
@@ -34,6 +38,7 @@ Route::resource('pemeriksaan',PemeriksaanController::class);
 Route::resource('nilai',NilaiController::class);
 Route::resource('subCategory.pemeriksaan',PemeriksaanController::class);
 Route::resource('subCategory.pemeriksaan.nilai',NilaiController::class);
+
 
 
 Route::resource('paket',PaketController::class);
