@@ -5,6 +5,7 @@ use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\PaketDetailController;
 use App\Http\Controllers\PemeriksaanController;
+use App\Http\Controllers\PerusahaanController;
 use App\Http\Controllers\SubCategoryController;
 use App\Models\Nilai;
 use App\Models\PaketDetail;
@@ -39,6 +40,8 @@ Route::resource('nilai',NilaiController::class);
 Route::resource('subCategory.pemeriksaan',PemeriksaanController::class);
 Route::resource('subCategory.pemeriksaan.nilai',NilaiController::class);
 
+
+Route::resource('perusahaan',PerusahaanController::class);
 
 
 Route::resource('paket',PaketController::class);
