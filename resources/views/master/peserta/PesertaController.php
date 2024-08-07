@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Peserta;
 use App\Models\Sex;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PesertaController extends Controller
 {
@@ -40,11 +39,7 @@ class PesertaController extends Controller
     public function store(Request $request)
     {
         $data=$request->all();
-     
-        //  $no = Peserta::whereRaw('id = (select max(`id`) from pesertas)')->get();
-            $no=DB::table('pesertas')->select('*')->max('id');
-        $no=$no+1;
-        return $no++;
+        
         Peserta::create($data);
         return redirect()->route('peserta.index');
     }
@@ -62,29 +57,24 @@ class PesertaController extends Controller
      */
     public function edit(Peserta $pesertum)
     {
-        $sex=Sex::all();
+        // return $pesertum->id;
         $peserta= Peserta::with('getSex')->where('id',$pesertum->id)->get();
-
-        // return $pesertum
-        return view('master.peserta.edit', compact('peserta','sex'));
+        return 
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Peserta $pesertum)
+    public function update(Request $request, Peserta $peserta)
     {
-        $data=$request->all();
-        $pesertum->update($data);
-        return redirect()->route('peserta.index');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Peserta $pesertum)
+    public function destroy(Peserta $peserta)
     {
-        $pesertum->delete($pesertum);
-        return redirect()->route('peserta.index');
+        return $peserta;
     }
 }
