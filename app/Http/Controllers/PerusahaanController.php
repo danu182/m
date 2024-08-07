@@ -12,7 +12,8 @@ class PerusahaanController extends Controller
      */
     public function index()
     {
-        //
+        $perusahaan=Perusahaan::all();
+        return view('master.perusahaan.index', compact('perusahaan'));
     }
 
     /**
@@ -20,7 +21,7 @@ class PerusahaanController extends Controller
      */
     public function create()
     {
-        //
+        return view('master.perusahaan.create'); 
     }
 
     /**
@@ -28,7 +29,9 @@ class PerusahaanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=$request->all();
+        Perusahaan::create($data);
+        return redirect()->route('perusahaan.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -44,7 +47,7 @@ class PerusahaanController extends Controller
      */
     public function edit(Perusahaan $perusahaan)
     {
-        //
+        return view('master.perusahaan.edit', compact('perusahaan'));
     }
 
     /**
@@ -52,7 +55,9 @@ class PerusahaanController extends Controller
      */
     public function update(Request $request, Perusahaan $perusahaan)
     {
-        //
+        $data =$request->all();
+        $perusahaan->update($data);
+        return redirect()->route('perusahaan.index')->with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -60,6 +65,7 @@ class PerusahaanController extends Controller
      */
     public function destroy(Perusahaan $perusahaan)
     {
-        //
+        $perusahaan->delete();
+        return redirect()->route('perusahaan.index')->with('success', 'Data berhasil diubah');
     }
 }
