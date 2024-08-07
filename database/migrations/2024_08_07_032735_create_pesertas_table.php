@@ -13,7 +13,21 @@ return new class extends Migration
     {
         Schema::create('pesertas', function (Blueprint $table) {
             $table->id();
+
+            $table->bigInteger('nomor_peserta')->nullable();
+
+            $table->string('nama_peserta');
+            $table->string('sex');
+            $table->string('tempat_lahir')->nullable();
+            $table->date('tgl_lahir')->nullable();
+            
+            $table->text('alamat')->nullable();
+            $table->string('ktp_peserta')->nullable();
+            $table->string('tlp_peserta')->nullable();
+            
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 
