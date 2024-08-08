@@ -7,6 +7,9 @@ use App\Models\Sex;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use function App\Helpers\formatDate;
+use function App\Helpers\nomor;
+
 class PesertaController extends Controller
 {
     /**
@@ -14,13 +17,8 @@ class PesertaController extends Controller
      */
     public function index()
     {
-        //  $peserta = DB::table('pesertas')
-        // ->select('*')
-        //         ->join('sexes', 'sexes.id', '=', 'pesertas.sex')
-        //         ->get();
 
-        $peserta=Peserta::with('getSex')->get();
-        // return $peserta;
+        $peserta=Peserta::with('getSex')->where('status',1)->get();
 
         return view('master.peserta.index', compact('peserta'));
     }
@@ -40,11 +38,9 @@ class PesertaController extends Controller
     public function store(Request $request)
     {
         $data=$request->all();
-     
-        //  $no = Peserta::whereRaw('id = (select max(`id`) from pesertas)')->get();
-            $no=DB::table('pesertas')->select('*')->max('id');
-        $no=$no+1;
-        return $no++;
+        $data['nomor_peserta'] = nomor();
+        // $data['status'] = 1;
+        // return $data;
         Peserta::create($data);
         return redirect()->route('peserta.index');
     }
@@ -65,7 +61,6 @@ class PesertaController extends Controller
         $sex=Sex::all();
         $peserta= Peserta::with('getSex')->where('id',$pesertum->id)->get();
 
-        // return $pesertum
         return view('master.peserta.edit', compact('peserta','sex'));
     }
 
@@ -75,6 +70,8 @@ class PesertaController extends Controller
     public function update(Request $request, Peserta $pesertum)
     {
         $data=$request->all();
+        $data['nomor_peserta'] = $pesertum->nomor_peserta;
+        // return $data;   
         $pesertum->update($data);
         return redirect()->route('peserta.index');
     }
@@ -84,7 +81,10 @@ class PesertaController extends Controller
      */
     public function destroy(Peserta $pesertum)
     {
-        $pesertum->delete($pesertum);
+        // $pesertum->delete($pesertum);
+
+        $data['status'] = 2;
+        $pesertum->update($data);
         return redirect()->route('peserta.index');
     }
 }

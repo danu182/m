@@ -28,10 +28,10 @@
                             <form action="{{ route('peserta.store') }}" method="POST">
                                 @csrf
                                 
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="">nomor_peserta</label>
                                     <input class="form-control" type="text" name="nomor_peserta">
-                                </div>
+                                </div> --}}
                                 
                                 <div class="form-group">
                                     <label for="">nama_peserta</label>

@@ -28,10 +28,10 @@
                             <form action="{{ route('peserta.update', $peserta[0]->id) }}" method="POST">
                                 @csrf
                                 @method('put')
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="">nomor_peserta</label>
                                     <input class="form-control" type="text" name="nomor_peserta" value="{{ $peserta[0]->nomor_peserta }}">
-                                </div>
+                                </div> --}}
                                 
                                 <div class="form-group">
                                     <label for="">nama_peserta</label>

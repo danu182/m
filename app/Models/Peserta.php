@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Peserta extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
 
     protected $fillable=[
@@ -20,7 +20,7 @@ class Peserta extends Model
         'alamat',
         'ktp_peserta',
         'tlp_peserta',
-
+        'status',
     ];
 
 
