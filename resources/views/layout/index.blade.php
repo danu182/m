@@ -24,6 +24,11 @@
     
 <link href="{{ asset('asset/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 
+
+{{-- select 2 --}}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+@routes
 </head>
 
 <body id="page-top">
@@ -131,6 +136,10 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('asset/js/demo/datatables-demo.js')}}"></script>
     
+{{-- select 2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    @stack('scripts')
 
 </body>
 

@@ -12,12 +12,18 @@ class Pendaftaran extends Model
     protected $FILLABLE=[
         'tgl_pendaftaran',
         'no_pendaftaran',
-        'nomor_peserta',
+        'peserta_id',
         'penjamin_peserta',
         'paket_id',
         'status',
 
     ];
+
+    
+    public function getPeserta()
+    {
+        return $this->belongsTo(Peserta::class, 'peserta_id', 'id');
+    }
 
 
 }

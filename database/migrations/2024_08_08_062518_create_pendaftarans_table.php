@@ -18,7 +18,7 @@ return new class extends Migration
             
             $table->string('no_pendaftaran');
             
-            $table->string('nomor_peserta');
+            $table->bigInteger('peserta_id');
             
             $table->bigInteger('penjamin_peserta');
             

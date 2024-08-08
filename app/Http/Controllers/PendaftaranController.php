@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pendaftaran;
+use App\Models\Perusahaan;
+use App\Models\Peserta;
 use Illuminate\Http\Request;
 
 class PendaftaranController extends Controller
@@ -12,7 +14,9 @@ class PendaftaranController extends Controller
      */
     public function index()
     {
-        //
+        $pendaftaran=Pendaftaran::all();
+                return view('master.pendaftaran.index', compact('pendaftaran'));
+        return view('penda', compact('pendaftaran'));
     }
 
     /**
@@ -20,7 +24,9 @@ class PendaftaranController extends Controller
      */
     public function create()
     {
-        //
+        $perusahaan= Perusahaan::all();
+        $peserta=Peserta::all();
+        return view('master.pendaftaran.create', compact('peserta','perusahaan'));
     }
 
     /**
