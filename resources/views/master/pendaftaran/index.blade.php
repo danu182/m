@@ -29,12 +29,14 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th scope="col">id</th>
+                                             <th scope="col">id</th>
                                             <th scope="col">tgl_pendaftaran</th>
                                             <th scope="col">no_pendaftaran</th>
-                                            <th scope="col">peserta_id</th>
+                                            <th scope="col">peserta</th>
+                                            <th scope="col">nama_paket</th>
                                             <th scope="col">penjamin_peserta</th>
-                                            <th scope="col">paket_id</th>
+                                            <th scope="col">edit</th>
+                                            <th scope="col">aksi</th>
 
                                           
                                         </tr>
@@ -44,9 +46,11 @@
                                           <th scope="col">id</th>
                                             <th scope="col">tgl_pendaftaran</th>
                                             <th scope="col">no_pendaftaran</th>
-                                            <th scope="col">peserta_id</th>
+                                            <th scope="col">peserta</th>
+                                            <th scope="col">nama_paket</th>
                                             <th scope="col">penjamin_peserta</th>
-                                            <th scope="col">paket_id</th>
+                                            <th scope="col">edit</th>
+                                            <th scope="col">aksi</th>
 
                                         </tr>
                                     </tfoot>
@@ -55,10 +59,11 @@
                                             <tr>
                                                 <td>{{ $item->id }}</td>
                                                 <td>{{ $item->tgl_pendaftaran }}</td>
-                                                <td>{{ $item->nama_pendaftaran }}</td>
-                                                <td>{{ $item->peserta_id }}</td>
-                                                <td>{{ $item->penjamin_peserta }}</td>
-                                                <td>{{ $item->paket_id }}</td>
+                                                <td>{{ $item->no_pendaftaran }}</td>
+                                                <td>{{ $item->getPeserta->nama_peserta }}</td>
+                                                <td>{{ $item->getPaket->nama_paket }}</td>
+                                                <td>{{ $item->getPerusahaan->nama_perusahaan }}</td>
+                                                
                                             <td>
                                         <a href="{{ route('pendaftaran.edit', $item->id) }}" class="btn btn-warning">Edit</a>
                                     </td>

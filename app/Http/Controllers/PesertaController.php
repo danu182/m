@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Paket;
+use App\Models\Perusahaan;
 use App\Models\Peserta;
 use App\Models\Sex;
 use Illuminate\Http\Request;
@@ -20,6 +22,8 @@ class PesertaController extends Controller
 
         $peserta=Peserta::with('getSex')->where('status',1)->get();
 
+        // return $peserta;
+
         return view('master.peserta.index', compact('peserta'));
     }
 
@@ -37,6 +41,7 @@ class PesertaController extends Controller
      */
     public function store(Request $request)
     {
+        // return nomor();
         $data=$request->all();
         $data['nomor_peserta'] = nomor();
         // $data['status'] = 1;
@@ -48,9 +53,13 @@ class PesertaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Peserta $peserta)
+    public function show(Peserta $pesertum)
     {
-        //
+        $sex=Sex::all();
+        $perusahaan=Perusahaan  ::all();
+        $paket=Paket::all();
+        // return $paket;
+        return view('master.peserta.show', compact('pesertum','paket','perusahaan'));
     }
 
     /**

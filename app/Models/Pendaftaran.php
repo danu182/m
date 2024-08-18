@@ -9,7 +9,7 @@ class Pendaftaran extends Model
 {
     use HasFactory;
 
-    protected $FILLABLE=[
+    protected $fillable=[
         'tgl_pendaftaran',
         'no_pendaftaran',
         'peserta_id',
@@ -23,6 +23,16 @@ class Pendaftaran extends Model
     public function getPeserta()
     {
         return $this->belongsTo(Peserta::class, 'peserta_id', 'id');
+    }
+    
+    public function getPaket()
+    {
+        return $this->belongsTo(Paket::class, 'paket_id', 'id');
+    }
+    
+    public function getPerusahaan()
+    {
+        return $this->belongsTo(Perusahaan::class, 'penjamin_peserta', 'id');
     }
 
 

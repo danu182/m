@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Paket;
 use App\Models\Pendaftaran;
 use App\Models\Perusahaan;
 use App\Models\Peserta;
 use Illuminate\Http\Request;
+
+use function App\Helpers\editPendaftaran;
+use function App\Helpers\formatDate;
+use function App\Helpers\noPendaftaran;
+use function App\Helpers\simpanPendaftaran;
 
 class PendaftaranController extends Controller
 {
@@ -14,9 +20,10 @@ class PendaftaranController extends Controller
      */
     public function index()
     {
-        $pendaftaran=Pendaftaran::all();
+
+        $pendaftaran=Pendaftaran::with('getPeserta','getPaket','getPerusahaan')->get(  );
                 return view('master.pendaftaran.index', compact('pendaftaran'));
-        return view('penda', compact('pendaftaran'));
+        
     }
 
     /**
@@ -34,7 +41,24 @@ class PendaftaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $data=[
+                'tgl_pendaftaran'=>formatDate(),
+                // 'no_pendaftaran'=>
+                'peserta_id'=>$request->peserta_id,
+                'penjamin_peserta'=>$request->perusahaan_id,
+                'paket_id'=>$request->paket_id,
+            
+            ];
+            
+            $data['no_pendaftaran']= noPendaftaran();
+
+            $data = simpanPendaftaran($data);
+            // return $data;
+        
+        // Pendaftaran::create($data);
+        return redirect()->route('pendaftaran.index');
+
     }
 
     /**
@@ -50,7 +74,11 @@ class PendaftaranController extends Controller
      */
     public function edit(Pendaftaran $pendaftaran)
     {
-        //
+        
+        $perusahaan=Perusahaan::all();
+        $paket=Paket::all();
+        $peserta=Peserta::all();
+        return view('master.pendaftaran.edit',compact('pendaftaran','perusahaan','paket','peserta'));
     }
 
     /**
@@ -58,7 +86,13 @@ class PendaftaranController extends Controller
      */
     public function update(Request $request, Pendaftaran $pendaftaran)
     {
-        //
+        $data=[
+                'penjamin_peserta'=>$request->perusahaan_id,
+                'paket_id'=>$request->paket_id,
+            
+            ];
+        editPendaftaran($data, $pendaftaran);
+        return redirect()->route('pendaftaran.index');
     }
 
     /**

@@ -75,6 +75,7 @@
                                                 
                                             <td>
                                         <a href="{{ route('peserta.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                                        <a href="{{ route('peserta.show', $item->id) }}" class="btn btn-info">lihat</a>
                                         {{-- <a href="{{ route('peserta.edit', $item->id) }}" class="bt n btn-warning">Edit</a> --}}
                                         {{-- <a href="{{ route('peserta.pemeriksaan.index', $item->id) }}" class="btn btn-info">tambah pemeriksaan</a> --}}
                                     </td>

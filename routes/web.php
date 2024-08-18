@@ -9,6 +9,7 @@ use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PerusahaanController;
 use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\TransaksiController;
 use App\Models\Nilai;
 use App\Models\PaketDetail;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,7 @@ Route::resource('subCategory.pemeriksaan.nilai',NilaiController::class);
 
 
 Route::resource('pendaftaran',PendaftaranController::class);
+Route::resource('transaksi',TransaksiController::class);
 
 
 Route::resource('paket',PaketController::class);
