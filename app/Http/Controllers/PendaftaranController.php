@@ -101,7 +101,8 @@ class PendaftaranController extends Controller
             ];
             
             $data2 = updateDaftar($data,$pendaftaran);
-            return $data2;
+            // return $data2; 
+            return redirect()->route('pendaftaran.index');
     }
 
     /**

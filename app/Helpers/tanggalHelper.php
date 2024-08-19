@@ -128,6 +128,7 @@ function editDaftar($data)
         'pendaftarans.status',
         'pesertas.id',
         'pesertas.nomor_peserta',
+        'pesertas.nama_peserta',
         'perusahaans.nama_perusahaan',
         'pakets.nama_paket',
         'sexes.jenis_kelamina',
@@ -147,38 +148,33 @@ function editDaftar($data)
 
 function updateDaftar($data,$pendaftaran)
 {
-
-    // return $pendaftaran;
-
-
-     $data=[
-        "peserta_id"=>$data->peserta_id,
-        "penjamin_peserta"=> $data->penjamin_peserta,
-        "paket_id"=> $data->paket_id
-        ];
-
         $transaksi = DB::table('transaksis')
               ->where('pendaftaran_id', $pendaftaran->id)
               ->update(['status' => 0]);
 
 
-        $pendaftaran->update($data);
+        $pendaftaran->update([
+            "peserta_id"=>$data['peserta_id'],
+            "penjamin_peserta"=> $data['penjamin_peserta'],
+            "paket_id"=> $data['paket_id'],
+        ]
+        );
 
 
          $data2=Pendaftaran::join('paket_details', 'paket_details.paket_id','=','pendaftarans.paket_id')
          ->select('paket_details.pemeriksaan_id')
-         ->where('pendaftarans.no_pendaftaran', $pendaftaran->no_pendaftaran)
-         ->get();
-
-         
+         ->where('pendaftarans.id', $pendaftaran->id)
+         ->where('paket_details.deleted_at', null)
+         ->get();         
 
     foreach ($data2 as  $datas)
         {
-            // echo $data2;
+            // echo $datas->pemeriksaan_id;
+            // echo "<br>";
             Transaksi::create([
-             'pendaftaran_id'=> $pendaftaran->id,
-            'paket_id'=> $pendaftaran->paket_id,
-            'pemeriksaan_id'=>$datas->pemeriksaan_id,
+                'pendaftaran_id'=> $pendaftaran->id,
+                'paket_id'=> $pendaftaran->paket_id,
+                'pemeriksaan_id'=>$datas->pemeriksaan_id,
             ]);
         }
 }
