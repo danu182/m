@@ -56,14 +56,15 @@ class TransaksiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Transaksi $transaksi)
+    public function show( $id)
     {
-        return $transaksi;
+        // return $id   ;
 
-        $pendaftaran=  Pendaftaran::with('getPeserta','getPaket')->where('pendaftarans.id', $transaksi->pendaftaran_id)->first();
+        $pendaftaran=  Pendaftaran::with('getPeserta','getPaket')->where('pendaftarans.id',$id)->first();
         
+        // return $pendaftaran;
         $transaksi = Transaksi::with('getPemeriksaan')
-        ->where('transaksis.pendaftaran_id', $transaksi->pendaftaran_id)
+        ->where('transaksis.pendaftaran_id', $id)
         ->where('transaksis.status', 1)     
         ->get();
 

@@ -30,42 +30,42 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="contoh1">nama_peserta</label>
-                                            <input type="text" class="form-control" id="contoh1" placeholder="Nama" value="{{ $pendaftaran->getPeserta->nama_peserta }}">
+                                            <input type="text" class="form-control" id="contoh1" placeholder="Nama" value="{{ $pendaftaran->getPeserta->nama_peserta }}" readonly>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="contoh2">nomor_peserta</label>
-                                            <input type="text" class="form-control" id="contoh2" placeholder="Username" value="{{ $pendaftaran->getPeserta->nomor_peserta }}">
+                                            <input type="text" class="form-control" id="contoh2" placeholder="Username" value="{{ $pendaftaran->getPeserta->nomor_peserta }}" readonly>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="contoh2">tempat_lahir</label>
-                                            <input type="text" class="form-control" id="contoh2" placeholder="Username" value="{{ $pendaftaran->getPeserta->tempat_lahir }}">
+                                            <input type="text" class="form-control" id="contoh2" placeholder="Username" value="{{ $pendaftaran->getPeserta->tempat_lahir }}"readonly>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="contoh2">ktp_peserta</label>
-                                            <input type="text" class="form-control" id="contoh2" placeholder="Username" value="{{ $pendaftaran->getPeserta->ktp_peserta }}">
+                                            <input type="text" class="form-control" id="contoh2" placeholder="Username" value="{{ $pendaftaran->getPeserta->ktp_peserta }}"readonly>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="contoh2">tlp_peserta</label>
-                                            <input type="text" class="form-control" id="contoh2" placeholder="Username" value="{{ $pendaftaran->getPeserta->tlp_peserta }}">
+                                            <input type="text" class="form-control" id="contoh2" placeholder="Username" value="{{ $pendaftaran->getPeserta->tlp_peserta }}"readonly>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="contoh2">status</label>
-                                            <input type="text" class="form-control" id="contoh2" placeholder="Username" value="{{ $pendaftaran->getPeserta->status }}">
+                                            <input type="text" class="form-control" id="contoh2" placeholder="Username" value="{{ $pendaftaran->getPeserta->status }}"readonly>
                                         </div>
                                     </div>
                                 
                                     <div class="form-row">
                                         <div class="form-group col-md-4">
                                             <label for="contoh1">tgl_pendaftaran</label>
-                                            <input type="text" class="form-control" id="contoh1" value="{{ $pendaftaran->tgl_pendaftaran }}">
+                                            <input type="text" class="form-control" id="contoh1" value="{{ $pendaftaran->tgl_pendaftaran }} " readonly>
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="contoh2">no_pendaftaran</label>
-                                            <input type="text" class="form-control" id="contoh2" value="{{ $pendaftaran->no_pendaftaran }}">
+                                            <input type="text" class="form-control" id="contoh2" value="{{ $pendaftaran->no_pendaftaran }} " readonly>
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="contoh2">Alamat Ayah</label>
-                                            <input type="text" class="form-control" id="contoh2" value="{{ $pendaftaran->getPaket->nama_paket }}">
+                                            <input type="text" class="form-control" id="contoh2" value="{{ $pendaftaran->getPaket->nama_paket }} " readonly>
                                         </div>
                                     </div>
 
@@ -73,8 +73,9 @@
                                     <div class="form-row">
                                     @forelse ($transaksi as $item)
                                         <div class="form-group col-md-6">
+                                            
                                             <label for="contoh1">{{ $item->getPemeriksaan->nama_pemeriksaan }}</label>
-                                            <input type="text" class="form-control" id="contoh1" name="{{ $item->getPemeriksaan->nama_pemeriksaan }}">
+                                            <input type="text" class="form-control col-md-3 " id="contoh1" name="{{ $item->getPemeriksaan->nama_pemeriksaan }}" >
                                         </div>
                                         
                                         @empty
