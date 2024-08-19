@@ -6,6 +6,7 @@ use App\Models\Pendaftaran;
 use App\Models\Peserta;
 use App\Models\Transaksi;
 use DateTime;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use PhpParser\Node\Stmt\TryCatch;
 use Symfony\Component\CssSelector\Node\FunctionNode;
@@ -88,9 +89,6 @@ function simpanPendaftaran($data)
    $pendaftaran= Pendaftaran::create($data);
 
    
-
-        //  return $pendaftaran;
-
          $data2=Pendaftaran::join('paket_details', 'paket_details.paket_id','=','pendaftarans.paket_id')
          ->select('paket_details.pemeriksaan_id')
          ->where('pendaftarans.no_pendaftaran', $pendaftaran->no_pendaftaran)
@@ -159,6 +157,10 @@ function updateDaftar($data,$pendaftaran)
         "paket_id"=> $data->paket_id
         ];
 
+        $transaksi = DB::table('transaksis')
+              ->where('pendaftaran_id', $pendaftaran->id)
+              ->update(['status' => 0]);
+
 
         $pendaftaran->update($data);
 
@@ -170,13 +172,13 @@ function updateDaftar($data,$pendaftaran)
 
          
 
-    // foreach ($data2 as  $datas)
-    //     {
-    //         // echo $data2;
-    //         Transaksi::create([
-    //          'pendaftaran_id'=> $pendaftaran->id,
-    //         'paket_id'=> $pendaftaran->paket_id,
-    //         'pemeriksaan_id'=>$datas->pemeriksaan_id,
-    //         ]);
-    //     }
+    foreach ($data2 as  $datas)
+        {
+            // echo $data2;
+            Transaksi::create([
+             'pendaftaran_id'=> $pendaftaran->id,
+            'paket_id'=> $pendaftaran->paket_id,
+            'pemeriksaan_id'=>$datas->pemeriksaan_id,
+            ]);
+        }
 }
