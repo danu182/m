@@ -72,10 +72,10 @@
                                     <hr>
                                     <div class="form-row">
                                     @forelse ($transaksi as $item)
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group row col-md-6">
                                             
-                                            <label for="contoh1">{{ $item->getPemeriksaan->nama_pemeriksaan }}</label>
-                                            <input type="text" class="form-control col-md-3 " id="contoh1" name="{{ $item->getPemeriksaan->nama_pemeriksaan }}" >
+                                            <label for="contoh1" class="col-sm-2 col-form-label">{{ $item->getPemeriksaan->nama_pemeriksaan }}</label>
+                                            <input type="text" class="form-control col-sm-2 col-form-label" id="contoh1" name="{{ $item->getPemeriksaan->slug }}" >
                                         </div>
                                         
                                         @empty

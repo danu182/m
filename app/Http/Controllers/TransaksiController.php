@@ -62,10 +62,21 @@ class TransaksiController extends Controller
 
         $pendaftaran=  Pendaftaran::with('getPeserta','getPaket')->where('pendaftarans.id',$id)->first();
         
-        // return $pendaftaran;
+// harus nya bisa seperti ini
+        // SELECT * from 
+        // transaksis t
+        // JOIN pemeriksaans p
+        // on t.pemeriksaan_id = p.id
+        // JOIN sub_categories sc
+        // on sc.id=p.subcategory_id
+        // WHERE sc.category_id =1
+
+
+
         $transaksi = Transaksi::with('getPemeriksaan')
         ->where('transaksis.pendaftaran_id', $id)
         ->where('transaksis.status', 1)     
+        // ->where('pemeriksaans.subcategory_id',1)
         ->get();
 
         // return $transaksi;
