@@ -15,7 +15,7 @@
                      {{-- <a href="" class="btn btn-outline-danger">Tambah pendaftaran</a> --}}
                 </div>
                 <div class="text-right">
-                    <a href="{{route('pendaftaran.create')}}" class="btn btn-success">Tambah</a>
+                    <a href="{{route('peserta.index')}}" class="btn btn-success">Tambah</a>
                 </div>
             </div>
             <div class="panel-body">

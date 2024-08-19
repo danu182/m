@@ -8,10 +8,13 @@ use App\Models\Perusahaan;
 use App\Models\Peserta;
 use Illuminate\Http\Request;
 
+use function App\Helpers\editDaftar;
 use function App\Helpers\editPendaftaran;
 use function App\Helpers\formatDate;
 use function App\Helpers\noPendaftaran;
 use function App\Helpers\simpanPendaftaran;
+use function App\Helpers\updateaftar;
+use function App\Helpers\updateDaftar;
 
 class PendaftaranController extends Controller
 {
@@ -74,10 +77,13 @@ class PendaftaranController extends Controller
      */
     public function edit(Pendaftaran $pendaftaran)
     {
-        
+        $data= $pendaftaran->id;
+        $pendaftaran = editDaftar($data);
+
         $perusahaan=Perusahaan::all();
         $paket=Paket::all();
         $peserta=Peserta::all();
+        // return $pendaftaran;
         return view('master.pendaftaran.edit',compact('pendaftaran','perusahaan','paket','peserta'));
     }
 
@@ -86,13 +92,16 @@ class PendaftaranController extends Controller
      */
     public function update(Request $request, Pendaftaran $pendaftaran)
     {
+        // return $request->all();    
         $data=[
+                'peserta_id'=>$request->peserta_id,
                 'penjamin_peserta'=>$request->perusahaan_id,
                 'paket_id'=>$request->paket_id,
             
             ];
-        editPendaftaran($data, $pendaftaran);
-        return redirect()->route('pendaftaran.index');
+            
+            $data2 = updateDaftar($data,$pendaftaran);
+            return $data2;
     }
 
     /**

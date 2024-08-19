@@ -113,3 +113,70 @@ function editPendaftaran($data, $pendaftaran)
 
 }
 
+
+function editDaftar($data)
+{
+    $data2=Pendaftaran::join('pesertas','pesertas.id','pendaftarans.peserta_id')
+    ->join('perusahaans','perusahaans.id','pendaftarans.penjamin_peserta')
+    ->join('sexes','sexes.id','pesertas.sex')
+    ->join('pakets','pakets.id','pendaftarans.paket_id')
+    ->select(
+        'pendaftarans.tgl_pendaftaran',
+        'pendaftarans.id',
+        'pendaftarans.no_pendaftaran',
+        'pendaftarans.peserta_id',
+        'pendaftarans.penjamin_peserta',
+        'pendaftarans.paket_id',
+        'pendaftarans.status',
+        'pesertas.id',
+        'pesertas.nomor_peserta',
+        'perusahaans.nama_perusahaan',
+        'pakets.nama_paket',
+        'sexes.jenis_kelamina',
+        'pesertas.sex',
+        'pesertas.tempat_lahir',
+        'pesertas.tgl_lahir',
+        'pesertas.alamat',
+        'pesertas.ktp_peserta',
+        'pesertas.tlp_peserta',
+        )
+    ->where('pendaftarans.peserta_id',$data)
+    ->get();
+    return $data2;
+}
+
+
+
+function updateDaftar($data,$pendaftaran)
+{
+
+    // return $pendaftaran;
+
+
+     $data=[
+        "peserta_id"=>$data->peserta_id,
+        "penjamin_peserta"=> $data->penjamin_peserta,
+        "paket_id"=> $data->paket_id
+        ];
+
+
+        $pendaftaran->update($data);
+
+
+         $data2=Pendaftaran::join('paket_details', 'paket_details.paket_id','=','pendaftarans.paket_id')
+         ->select('paket_details.pemeriksaan_id')
+         ->where('pendaftarans.no_pendaftaran', $pendaftaran->no_pendaftaran)
+         ->get();
+
+         
+
+    // foreach ($data2 as  $datas)
+    //     {
+    //         // echo $data2;
+    //         Transaksi::create([
+    //          'pendaftaran_id'=> $pendaftaran->id,
+    //         'paket_id'=> $pendaftaran->paket_id,
+    //         'pemeriksaan_id'=>$datas->pemeriksaan_id,
+    //         ]);
+    //     }
+}
