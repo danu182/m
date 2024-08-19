@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Transaksi extends Model
 {
@@ -18,6 +19,13 @@ class Transaksi extends Model
 
     public function getPendaftaran()
     {
-        return $this->belongsTo(User::class, 'pendaftaran_id', 'id');
+        return $this->hasMany(Pendaftaran::class,  'id','pendaftaran_id');
     }
+
+    public function getPemeriksaan()
+    {
+        return $this->belongsTo(Pemeriksaan::class, 'pemeriksaan_id', 'id');
+    }
+
+
 }

@@ -36,4 +36,10 @@ class Pendaftaran extends Model
     }
 
 
+    public function getTransaksi()
+    {
+        return $this->hasMany(Transaksi::class, 'pendaftaran_id','id');
+    }
+
+
 }
