@@ -73,7 +73,7 @@ class TransaksiController extends Controller
 
 
 
-        $transaksi = Transaksi::with('getPemeriksaan')
+        $transaksi = Transaksi::with('getPemeriksaan','getIsian')
         ->where('transaksis.pendaftaran_id', $id)
         ->where('transaksis.status', 1)     
         // ->where('pemeriksaans.subcategory_id',1)

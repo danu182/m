@@ -26,6 +26,11 @@ class Transaksi extends Model
     {
         return $this->belongsTo(Pemeriksaan::class, 'pemeriksaan_id', 'id');
     }
+    
+    public function getIsian()
+    {
+        return $this->belongsTo(isianPemeriksaan::class, 'pemeriksaan_id', 'id');
+    }
 
 
 }

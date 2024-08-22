@@ -25,8 +25,9 @@
                             <h6 class="m-0 font-weight-bold text-primary">form Tambah category</h6>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('coba.store') }}" method="POST">
+                            <form action="{{ route('coba.update', $pemeriksaan[0]->id) }}" method="POST">
                                 @csrf
+                                @method('PUT')
                                 
                                <div class="form-group">
                                     <label for="">periksa_id</label>
@@ -46,6 +47,7 @@
                                 
                                 <div class="form-group">
                                     <label for="">kategori_isian</label>
+                                    <input class="form-control" type="hidden" name="id" value="{{ $pemeriksaan[0]->id }}">
                                     <input class="form-control" type="text" name="kategori_isian" value="{{ $pemeriksaan[0]->kategori_isian }}">
                                 </div>
                                 

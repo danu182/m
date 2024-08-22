@@ -71,7 +71,11 @@ Route::get('isianpemeriksaan/create', [IsianPemeriksaanController::class, 'creat
 Route::get('isianpemeriksaan/edit/{id}', [IsianPemeriksaanController::class, 'edit'])->name('isianpemeriksaan.edit');
 
 Route::get('coba', [cobaController::class, 'index'])->name('coba.index');
+// Route::get('coba', [cobaController::class, 'create'])->name('coba.create');
 Route::get('coba/edit/{id}', [cobaController::class, 'edit'])->name('coba.edit');
+Route::get('coba/show/{id}', [cobaController::class, 'show'])->name('coba.show');
+Route::post('coba/store', [cobaController::class, 'store'])->name('coba.store');
+Route::put('coba/update/{id}', [cobaController::class, 'update'])->name('coba.update');
 
 
 

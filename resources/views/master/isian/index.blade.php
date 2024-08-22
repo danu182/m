@@ -32,7 +32,7 @@
                                          <th>id</th>
                                             <th>nama_pemeriksaan</th>
                                             <th>description</th>
-                                            <th>edit</th>
+                                            <th>aksi</th>
                                             <th>hapus</th>
 
                                           
@@ -44,7 +44,7 @@
                                           <th>id</th>
                                             <th>nama_pemeriksaan</th>
                                             <th>description</th>
-                                            <th>edit</th>
+                                            <th>aksi</th>
                                             <th>hapus</th>
 
                                           
@@ -58,18 +58,14 @@
                                                 <td>{{ $item->descripcion }}</td> 
                                               
                                                 @if ($item->kategori_isian)
-                                                <td>{{ $item->kategori_isian }} 
-                                                    <a href="">edit</a>
-
-                                                </td>
-                                                @elseif ($item->kategori_isian == null)
-                                                <td>
-                                                <a href="">tambah</a>
-                                                </td>
+                                                <td>{{ $item->kategori_isian }}</td> 
+                                                <td><a href="{{ route('coba.show', $item->periksa_id) }}" class="btn btn-warning">ubah</a></td>
+                                                @else
+                                              
+                                                <td>---</td> 
+                                                <td><a href="{{ route('coba.edit', $item->periksa_id) }}" class="btn btn-info">tambah</a></td>
                                                     
                                                 @endif
-                                                
-                                              <td> tidak</td>
                                                                                                           </tr>
                                             @endforeach
                                     </tbody>
