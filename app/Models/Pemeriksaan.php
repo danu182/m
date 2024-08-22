@@ -52,4 +52,13 @@ class Pemeriksaan extends Model
     }
 
 
+    
+    public function getIsian()
+    {
+        return $this->hasMany(isianPemeriksaan::class, 'pemeriksaan_id', 'id');
+    }
+
+    
+
+
 }
