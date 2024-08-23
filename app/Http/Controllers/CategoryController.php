@@ -64,7 +64,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-         $santri = SantriModel::where('id_santri', $request->id_santri)->update[
+         $data = [
             'nama_category' => $request->nama_category,
             'description' => $request->description,
             'slug' => Str::slug($request->nama_category),

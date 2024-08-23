@@ -30,6 +30,8 @@
                                     <thead>
                                         <tr>
                                          <th>id</th>
+                                            <<th>nama_category</th>
+                                            <th>nama_subcategory</th>
                                             <th>nama_pemeriksaan</th>
                                             <th>description</th>
                                             <th>aksi</th>
@@ -42,6 +44,8 @@
                                     <tfoot>
                                         <tr>
                                           <th>id</th>
+                                            <th>nama_category</th>
+                                            <th>nama_subcategory</th>
                                             <th>nama_pemeriksaan</th>
                                             <th>description</th>
                                             <th>aksi</th>
@@ -53,6 +57,8 @@
                                     <tbody>
                                            @foreach ($pemeriksaan as $item)
                                             <tr>
+                                                <th>{{ $item->nama_category }}</th>
+                                                <th>{{ $item->nama_subcategory }}</th>
                                                 <td>{{ $item->periksa_id }}</td>
                                                 <td>{{ $item->nama_pemeriksaan }}</td> 
                                                 <td>{{ $item->descripcion }}</td> 

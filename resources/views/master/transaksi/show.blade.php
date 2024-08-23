@@ -73,8 +73,25 @@
                                     <div class="form-row">
 
                                     @forelse ($transaksi as $item)
+                                        {{-- {{ $item }} --}}
+                                        <div class="form-group col-md-4">
+                                        <p>{{ $item->getPemeriksaan->nama_pemeriksaan }}</p>
+                                        @if ($item->getIsian->kategori_isian=="ANGKA")
+                                            <input type="number" class="form-control" id="contoh2">
+                                        @elseif ($item->getIsian->kategori_isian=="TEXT")
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        @elseif ($item->getIsian->kategori_isian=="YES")
+                                            <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1">YES</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                            <label class="form-check-label" for="inlineRadio2">NO</label>
+                                            </div>
+                                        @endif
                                     
-                                        <p>{{ $item->kategori_isian }}</p>
+                                    </div>
                                     @empty
                                         <p>ksosong</p>
                                     @endforelse ($transaksi as $item)

@@ -21,11 +21,17 @@ class cobaController extends Controller
             'p.nama_pemeriksaan',
             'p.descripcion',
             'isian_pemeriksaans.id AS id',
-            'isian_pemeriksaans.kategori_isian'
+            'isian_pemeriksaans.kategori_isian',
+            'sub_categories.nama_subcategory',
+            'categories.nama_category'
             )
         ->leftJoin('isian_pemeriksaans', 'p.id', '=', 'isian_pemeriksaans.pemeriksaan_id')
+        ->join('sub_categories', 'p.subcategory_id', '=', 'sub_categories.id')
+        ->join('categories', 'sub_categories.category_id', '=', 'categories.id')
         ->get();
 
+
+        // return "sadas";
         // return $pemeriksaan;
 
 
