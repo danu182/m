@@ -33,4 +33,11 @@ class Transaksi extends Model
     }
 
 
+    public function getCategory()
+    {
+        return $this->belongsToMany(Pemeriksaanx::class, 'products_shops',
+        'shops_id', 'products_id');
+    }
+
+
 }
