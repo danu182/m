@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pendaftaran;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TransaksiController extends Controller
 {
@@ -72,6 +73,45 @@ class TransaksiController extends Controller
         // WHERE sc.category_id =1
 
 
+        // SELECT * from categories
+        // JOIN sub_categories
+        // on categories.id=sub_categories.category_id
+        // JOIN pemeriksaans 
+        // on sub_categories.id=pemeriksaans.subcategory_id
+        // JOIN isian_pemeriksaans
+        // on pemeriksaans.id=isian_pemeriksaans.pemeriksaan_id
+
+
+        $coba=DB::table('categories')
+                ->join('sub_categories','categories.id','=', 'sub_categories.category_id')
+                ->join('pemeriksaans','sub_categories.id','=', 'pemeriksaans.subcategory_id')
+                ->join('isian_pemeriksaans','pemeriksaans.id','=', 'isian_pemeriksaans.pemeriksaan_id')
+                ->get();
+
+                // return $coba;
+
+                foreach ($coba as $item) {
+                if (!isset($result[$item->nama_category])) {
+                    $result[$item->id] = [
+                        'nama_category' => $item->nama_category,
+                        'nama_subcategory' => []
+                    ];
+                }
+                if (!isset($result[$item->nama_category]['nama_subcategory'][$item->nama_subcategory])) {
+                    $result[$item->nama_category]['nama_subcategory'][$item->nama_subcategory] = [
+                        'nama_subcategory' => $item->nama_subcategory,
+                        'nama_pemeriksaan' => []
+                    ];
+                }
+                $result[$item->nama_category]['nama_pemeriksaan'][$item->nama_pemeriksaan]['nama_pemeriksaan'][] = [
+                    // 'kecamatan_id' => $item->kecamatan_id,
+                    'nama_pemeriksaan' => $item->nama_pemeriksaan,
+                ];
+            }
+            return $result;
+
+
+
 
         $transaksi = Transaksi::with('getPemeriksaan','getIsian')
         ->where('transaksis.pendaftaran_id', $id)
@@ -80,7 +120,7 @@ class TransaksiController extends Controller
         // ->where('pemeriksaans.subcategory_id',1)
         ->get();
 
-        // return $transaksi;
+        return $transaksi;
 
 
 
