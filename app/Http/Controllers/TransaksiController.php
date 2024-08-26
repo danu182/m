@@ -92,21 +92,24 @@ class TransaksiController extends Controller
 
                 foreach ($coba as $item) {
                 if (!isset($result[$item->nama_category])) {
-                    $result[$item->id] = [
-                        'nama_category' => $item->nama_category,
+                    $result[$item->nama_category] = [
+                        // 'nama_category' => $item->nama_category,
                         'nama_subcategory' => []
                     ];
                 }
                 if (!isset($result[$item->nama_category]['nama_subcategory'][$item->nama_subcategory])) {
                     $result[$item->nama_category]['nama_subcategory'][$item->nama_subcategory] = [
                         'nama_subcategory' => $item->nama_subcategory,
-                        'nama_pemeriksaan' => []
+                        'nama_pemeriksaan' => [
+                            $item->nama_pemeriksaan,
+                            $item->kategori_isian,
+                            ]
                     ];
                 }
-                $result[$item->nama_category]['nama_pemeriksaan'][$item->nama_pemeriksaan]['nama_pemeriksaan'][] = [
-                    // 'kecamatan_id' => $item->kecamatan_id,
-                    'nama_pemeriksaan' => $item->nama_pemeriksaan,
-                ];
+                // $result[$item->nama_category]['nama_pemeriksaan'][$item->nama_pemeriksaan]['nama_pemeriksaan'][] = [
+                //     // 'kecamatan_id' => $item->kecamatan_id,
+                //     'nama_pemeriksaan' => $item->nama_pemeriksaan,
+                // ];
             }
             return $result;
 
